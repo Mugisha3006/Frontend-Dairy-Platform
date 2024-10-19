@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ProductCard from "./ProductCard";
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -16,12 +17,7 @@ const ProductList = () => {
     return (
         <div className="flex flex-col gap-4">
             {products.map((product) => (
-                <div key={product.id} className="border border-gray-200 p-4">
-                    <h3 className="text-lg font-bold">{product.name}</h3>
-                    <p className="text-sm text-gray-500">{product.description}</p>
-                    <p className="text-sm text-gray-500">Price: ${product.price}</p>
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
-                </div>
+                <ProductCard key={product.id} product={product}/>
             ))}
         </div>
     );

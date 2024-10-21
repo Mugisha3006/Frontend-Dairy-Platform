@@ -15,13 +15,11 @@ function Layout({ children }) {
 
 function App() {
   return (
-        <Router>
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route element={<Layout/>} />
             <Route path="/products" element={<ProductList/> } />
           </Routes>
-        </Router>
   );
 }
 

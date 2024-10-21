@@ -1,20 +1,21 @@
 import React from "react";
-import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import About from "../components/About";
+import Footer from "../components/Footer";
 import Banner from "../components/Banner";
 import ProductList from "../components/ProductList";
 
-function Home() {
+
+
+function ProductListPage() {
     return (
-        <div>
+        <div id="productlistpage">
             <Navbar />
-            <Banner />
-            <ProductList/>
-            <About/>
+            <Banner/>
+            <ProductList />
             <Footer/>
+
         </div>
     )
-}
+}; 
 
-export default Home
+export default ProductListPage;

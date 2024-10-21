@@ -4,6 +4,7 @@ import ProductList from "./components/ProductList";
 import Home from "./pages/Home"
 import Footer from "./components/Footer";
 import AboutPage from "./pages/AboutPage";
+import ProductListPage from "./pages/ProductListPage";
 
 function Layout({ children }) {
   return (
@@ -19,8 +20,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route element={<Layout/>} />
-            <Route path="/products" element={<ProductList/> } />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/products" element={<ProductListPage />} />
           </Routes>
   );
 }

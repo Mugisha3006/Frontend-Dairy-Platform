@@ -7,8 +7,9 @@ const ProductList = () => {
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await axios.get("http://localhost:3300/api/V1/products");
-            setProducts(response.data);
+            const response = await axios.get("http://localhost:3300/api/V1/products/allProducts");
+            console.log(response.data)
+            setProducts(response.data.products || []);
         };
 
         fetchProducts();
@@ -16,9 +17,13 @@ const ProductList = () => {
 
     return (
         <div className="flex flex-col gap-4">
-            {products.map((product) => (
-                <ProductCard key={product.id} product={product}/>
-            ))}
+            {Array.isArray(products) && products.length > 0 ? (
+                products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                ))
+            ) : (
+                <p>No products available</p>
+            )}
         </div>
     );
 };

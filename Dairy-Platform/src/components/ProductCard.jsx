@@ -36,8 +36,8 @@ const ProductCard = ({ product }) => {
     return (
         <div className="border border-gray-200 p-4">
             <h3 className="text-lg font-bold">{product.name}</h3>
-            <p className="text-sm text-gray-500">{product.description}</p>
-            <p className="text-sm text-gray-500">Price: ${product.price}</p>
+            <p className="text-base text-gray-500">{product.description}</p>
+            <p className="text-base text-gray-500">Price: Shs.{product.price}</p>
             <div className="flex items-center gap-4">
                 <label htmlFor="quantity" className="text-sm text-gray-500">Quantity:</label>
                 <input type="number" id="quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} className="border border-gray-200 px-2 py-1 rounded" />

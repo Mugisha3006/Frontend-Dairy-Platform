@@ -10,7 +10,7 @@ function ProductListPage() {
     return (
         <div id="productlistpage">
             <Navbar />
-            <Banner/>
+            <Banner title={"Products"}/>
             <ProductList />
             <Footer/>
 

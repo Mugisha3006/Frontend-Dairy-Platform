@@ -39,6 +39,15 @@ const ProductCard = ({ product }) => {
             className="product product-section w-4/5 max-w-screen-xl m-auto text-center pt-20"
         >
             <div className="border border-gray-200 p-4">
+                <div className="product-images md:w-1/2 h-auto flex justify-center items-center rounded-lg p-4 shadow-2xl w-full mb-8">
+                    {product.images && product.images.length > 0 ? (
+                        product.images.map((image) => (
+                            <img key={image.id} src={image.url} alt={product.name} className="product-image" />
+                        ))
+                    ) : (
+                        <p>No images available</p>
+                    )}
+                </div>
                 <h3 className="text-lg font-bold">{product.name}</h3>
                 <p className="text-base text-gray-500">{product.description}</p>
                 <p className="text-base text-gray-500">Price: Shs.{product.price}</p>

@@ -62,11 +62,11 @@ function Signup() {
                 input
             )
             .then((response) => {
-                navigate("/login");
+                navigate("/Login");
             })
             .catch((error) => {
                 setError("Not Signed Up, Try again!");
-                console.log(error);
+                console.log(error);   
             });
     };
     return (
@@ -91,7 +91,7 @@ function Signup() {
                                 className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#205b75] focus:outline-none"
                                 placeholder="Names"
                                 onChange={(e) => {
-                                    setInput({ ...input, LastName: e.target.value });
+                                    setInput({ ...input, Names: e.target.value });
                                     validateNames(e.target.value);
                                 }}
                                 value={input.Names}
@@ -101,14 +101,14 @@ function Signup() {
                             <p className="text-center text-red-500">{error.Names}</p>
                         )}
                         <div className="flex w-[80%] m-auto justify-center">
-                            <label for="email" className="text-lg m-[0]" />
+                            <label for="Email" className="text-lg m-[0]" />
                             <input
-                                id="email"
-                                type="email"
+                                id="Email"
+                                type="Email"
                                 className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#205b75] focus:outline-none"
                                 placeholder="Email"
                                 onChange={(e) => {
-                                    setInput({ ...input, email: e.target.value });
+                                    setInput({ ...input, Email: e.target.value });
                                     validateEmail(e.target.value);
                                 }}
                                 value={input.Email}
@@ -119,14 +119,14 @@ function Signup() {
                         )}
                        
                         <div className="relative flex w-[80%] m-auto justify-center">
-                            <label for="password" className="text-lg m-[0] font-normal" />
+                            <label for="Password" className="text-lg m-[0] font-normal" />
                             <input
-                                id="password"
-                                type="password"
-                                className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#061f77] focus:outline-none"
+                                id="Password"
+                                type="Password"
+                                className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#205b75] focus:outline-none"
                                 placeholder="Password"
                                 onChange={(e) => {
-                                    setInput({ ...input, password: e.target.value });
+                                    setInput({ ...input, Password: e.target.value });
                                     validatePassword(e.target.value);
                                 }}
                                 value={input.Password}
@@ -151,7 +151,7 @@ function Signup() {
                         <div>
                             <p className="text-center mt-4 text-[#205b75]">
                                 Already have an account?{" "}
-                                <Link to="/login" className="text-[#bf8b56] font-bold">
+                                <Link to="/Login" className="text-[#bf8b56] font-bold">
                                     Sign in
                                 </Link>
                             </p>

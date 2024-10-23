@@ -1,72 +1,58 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import { storeUser } from "../UserHelper";
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
 
 function Login() {
-    const [input, setInput] = useState({
-        identifier: "",
-        Password: "",
-    });
-    const [errors, setErrors] = useState({
-        identifier: "",
-        Password: "",
-    });
-
-    const validateEmail = (identifier) => {
-        if (!validator.isEmail(identifier)) {
-            setErrors({ ...errors, identifier: "Invalid Email format." });
-            return false;
-        }
-        setErrors({ ...errors, identifier: "" });
-        return true;
-    };
-
-    const validatePassword = (Password) => {
-        if (Password.length < 8) {
-            setErrors({
-                ...errors,
-                password: "Password must be at least 8 characters long.",
-            });
-            return false;
-        }
-        setErrors({ ...errors, Password: "" });
-        return true;
-    };
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const isValid =
-            validateEmail(input.identifier) && validatePassword(input.Password);
-        if (!isValid) {
-            return;
+        // try {
+        //     const response = await axios.post(
+        //         "http://localhost:3300/api/V1/users/login",
+        //         input
+        //     );
+
+        //     if (!response.data.jwt) {
+        //         setErrors({
+        //             ...errors,
+        //             identifier: "Invalid email password combination.",
+        //         });
+        //         throw new Error("Invalid email password combination.");
+        //     }
+        //     storeUser(response.data);
+        //     navigate("/products");
+        // } catch (error) {
+        //     console.error(error);
+        // }
+        const requestBody = {
+            email,
+            password,
         }
 
-        try {
-            const response = await axios.post(
+        axios
+            .post(
                 "http://localhost:3300/api/V1/users/login",
-                input
-            );
-
-            if (!response.data.jwt) {
-                setErrors({
-                    ...errors,
-                    identifier: "Invalid email password combination.",
-                });
-                throw new Error("Invalid email password combination.");
-            }
-            storeUser(response.data);
-            navigate("/products");
-        } catch (error) {
-            console.error(error);
-        }
+                requestBody
+            )
+            .then((response) => {
+                const token = response.data.token;
+                localStorage.setItem("token", token)
+                navigate("/products")
+            })
+            .catch((error) => {
+                setError("Not Logged In, Try Again!");
+                console.log(error);
+            })
+            
     };
 
     return (
@@ -92,15 +78,12 @@ function Login() {
                                     className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#205b75] focus:outline-none"
                                     placeholder="Email"
                                     onChange={(e) => {
-                                        setInput({ ...input, identifier: e.target.value });
-                                        validateEmail(e.target.value);
+                                        setEmail(e.target.value);
                                     }}
-                                    value={input.identifier}
+                                    value={email}
                                 />
                             </div>
-                            {errors.identifier && (
-                                <p className="text-center text-red-500">{errors.identifier}</p>
-                            )}
+                           
                             <div className="relative flex w-[80%] m-auto justify-center">
                                 <label htmlFor="Password" className="text-lg m-[0] font-normal" />
                                 <input
@@ -109,18 +92,15 @@ function Login() {
                                     className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#205b75] focus:outline-none"
                                     placeholder="Password"
                                     onChange={(e) => {
-                                        setInput({ ...input, Password: e.target.value });
-                                        validatePassword(e.target.value);
+                                        setPassword(e.target.value);
                                     }}
-                                    value={input.Password}
+                                    value={password}
                                 />
                                 <span className="absolute top-[55%] transform -translate-y-1/4 right-[15%] text-[#205b75] text-[20px]">
                                     <i className="bx bx-low-vision"></i>
                                 </span>
                             </div>
-                            {errors.Password && (
-                                <p className="text-center text-red-500">{errors.Password}</p>
-                            )}
+                           
                             <div className="mt-8 flex justify-center">
                                 <div>
                                     <p className="text-center text-[#bf8b56]">Forgot password?</p>
@@ -135,11 +115,11 @@ function Login() {
                                 </button>
                             </div>
                         </form>
-                        {errors.general && <p className="text-red-500">{errors.general}</p>}
+                        
                         <div>
                             <p className="mt-4 text-[#205b75] text-center">
                                 Don't have an account?{" "}
-                                <Link to="/signup" className="text-[#bf8b56]">
+                                <Link to="/Signup" className="text-[#bf8b56]">
                                     Sign up
                                 </Link>
                             </p>

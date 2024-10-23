@@ -15,24 +15,6 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // try {
-        //     const response = await axios.post(
-        //         "http://localhost:3300/api/V1/users/login",
-        //         input
-        //     );
-
-        //     if (!response.data.jwt) {
-        //         setErrors({
-        //             ...errors,
-        //             identifier: "Invalid email password combination.",
-        //         });
-        //         throw new Error("Invalid email password combination.");
-        //     }
-        //     storeUser(response.data);
-        //     navigate("/products");
-        // } catch (error) {
-        //     console.error(error);
-        // }
         const requestBody = {
             email,
             password,

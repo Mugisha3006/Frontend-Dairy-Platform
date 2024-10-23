@@ -1,68 +1,35 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function Signup() {
-    const [input, setInput] = useState({
-        Names: "",
-        Email: "",
-        Password: "",
-        role: "CUSTOMER",
-        confirmed: true,
-        blocked: false
-    });
-    const [error, setError] = useState({
-        Email: "",
-        Password: ""
-    });
 
-    // validate Name
-    function validateNames(Names) {
-        let NamesRegexp = /^[a-zA-Z]+$/;
-        if (!NamesRegexp.test(Names)) {
-            setError({ ...error, Names: "Invalid Names" });
-            return false;
-        }
-        setError({ ...error, Names: "" });
-        return true;
-    }
-
-    // validate Email
-    function validateEmail(Email) {
-        if (!validator.isEmail(Email)) {
-            setError({ ...error, Email: "Invalid Email" });
-            return false;
-        }
-        setError({ ...error, Email: "" });
-        return true;
-    }
-
-    // Validate Password
-    function validatePassword(Password) {
-        if (Password.length < 8) {
-            setError({ ...error, Password: "Invalid Password" });
-            return false;
-        }
-        setError({ ...error, Password: "" });
-        return true;
-    }
-
+    const [name, setNames] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
+        const requestBody = {
+            name,
+            email,
+            password
+        }; 
         axios
             .post(
                 "http://localhost:3300/api/V1/users/register",
-                input
+                requestBody
             )
             .then((response) => {
+                const token = response.data.token;
+                localStorage.setItem("token", token)
                 navigate("/Login");
+
             })
             .catch((error) => {
                 setError("Not Signed Up, Try again!");
@@ -91,15 +58,12 @@ function Signup() {
                                 className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#205b75] focus:outline-none"
                                 placeholder="Names"
                                 onChange={(e) => {
-                                    setInput({ ...input, Names: e.target.value });
-                                    validateNames(e.target.value);
+                                    setNames( e.target.value );
                                 }}
-                                value={input.Names}
+                                value={name}
                             />
                         </div>
-                        {error.Names && (
-                            <p className="text-center text-red-500">{error.Names}</p>
-                        )}
+                        
                         <div className="flex w-[80%] m-auto justify-center">
                             <label for="Email" className="text-lg m-[0]" />
                             <input
@@ -108,15 +72,11 @@ function Signup() {
                                 className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#205b75] focus:outline-none"
                                 placeholder="Email"
                                 onChange={(e) => {
-                                    setInput({ ...input, Email: e.target.value });
-                                    validateEmail(e.target.value);
+                                    setEmail(e.target.value );
                                 }}
-                                value={input.Email}
+                                value={email}
                             />
                         </div>
-                        {error.Email && (
-                            <p className="text-center text-red-500">{error.Email}</p>
-                        )}
                        
                         <div className="relative flex w-[80%] m-auto justify-center">
                             <label for="Password" className="text-lg m-[0] font-normal" />
@@ -126,18 +86,14 @@ function Signup() {
                                 className="w-4/5 rounded p-2 mt-4 placeholder-[#205b75] border border-gray-300 text-[#205b75] focus:outline-none"
                                 placeholder="Password"
                                 onChange={(e) => {
-                                    setInput({ ...input, Password: e.target.value });
-                                    validatePassword(e.target.value);
+                                    setPassword(e.target.value);
                                 }}
-                                value={input.Password}
+                                value={password}
                             />
                             <span className="absolute top-[55%] transform -translate-y-1/4 right-[15%] text-[#205b75] text-[20px]">
                                 <i className="bx bx-low-vision"></i>
                             </span>
                         </div>
-                        {error.Password && (
-                            <p className="text-center text-red-500">{error.Password}</p>
-                        )}
                      
                         <div className="mt-8 flex justify-center"></div>
                         <div className="flex justify-center m-auto w-[80%]">

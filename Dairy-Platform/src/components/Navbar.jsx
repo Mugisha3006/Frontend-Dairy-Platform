@@ -22,7 +22,7 @@ function Navbar() {
         storeUser({});
         setIsLoggedIn(false);
         setEmail("");
-        navigate("/login");
+        navigate("/Login");
     };
 
     const toggleMenu = () => {
@@ -65,7 +65,7 @@ function Navbar() {
                                 </Link>
                             </li>
                         </ul>
-                        <ul className="flex flex-col md:flex-row items-center justify-center mt-8 md:mt-0">
+                        <ul className="flex flex-col md:flex-row items-center justify-center gap-4 mt-8 md:mt-0">
                             {isLoggedIn ? (
                                 <>
                                     <li className="hover:text-[white] md:hover:text-[#bf8b56] ">
@@ -93,7 +93,7 @@ function Navbar() {
                                 <>
                                         <li className="hover:text-[white] md:hover:text-[#bf8b56] active my-4 md:my-0 md:ml-0">
                                         <Link
-                                            className=""
+                                            className="font-bold"
                                             to="/login"
                                             style={{ whiteSpace: "nowrap" }}
                                         >
@@ -107,7 +107,14 @@ function Navbar() {
                                         >
                                             Sign Up
                                         </Link>
+                                        
                                     </li>
+                                    <li>
+                                            <Link to="/cart" className="text-[#205b75] text-2xl">
+                                            <i className ='bx bxs-cart'></i>
+                                        </Link>
+                                    </li>
+
                                 </>
                             )}
                         </ul>

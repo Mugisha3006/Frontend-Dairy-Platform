@@ -4,17 +4,16 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-// const navigate = useNavigate();
 
 const CartPage = () => {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
-        const fetchCart = async () => {
-            const response = await axios.get("http://localhost:3300/api/V1/carts/allCarts");
-            setCart(response.data.cart || [] );
-        };
-        fetchCart();
+        // retrieve the cart data from localstorage
+        const savedCart = localStorage.getItem("cart");
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
     }, []);
 
     const navigate = useNavigate();
@@ -30,7 +29,7 @@ const CartPage = () => {
             .then((response) => {
                 const order = response.data
                 localStorage.setItem("order", order)
-                navigator("/order")
+                navigate("/order")
             })
             .catch((error) => {
                 console.error(error)
@@ -44,7 +43,11 @@ const CartPage = () => {
                 <ul className="list-disc px-4 py-2">
                     {Array.isArray(cart) && cart.length > 0 ? (
                         cart.map((cartItem) => (
-                        <cartItem key={cartItem.id} cartItem={cartItem} />
+                            <li key={cartItem.id}>
+                                <h2>{cartItem.productId}</h2>
+                                <p>Quantity: ${cartItem.quantity}</p>
+                                <p>Price: ${cartItem.price }</p>
+                        </li>
                         ))) : (
                             <p>No Carts Available</p>
                     )

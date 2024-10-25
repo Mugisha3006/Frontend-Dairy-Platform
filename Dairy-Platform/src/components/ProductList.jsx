@@ -17,6 +17,7 @@ const ProductList = () => {
 
     return (
         <div className="flex flex-col gap-4">
+            <h1 className="text-4xl text-center mb-6 font-bold">Products</h1>
             {Array.isArray(products) && products.length > 0 ? (
                 products.map((product) => (
                     <ProductCard key={product.id} product={product} />

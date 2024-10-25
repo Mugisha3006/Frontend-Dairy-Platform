@@ -91,7 +91,7 @@ function Login() {
                             <div className="flex justify-center m-auto w-[80%]">
                                 <button
                                     type="submit"
-                                    className="text-white mt-4 w-4/5 font-medium text-base rounded py-2 font-bold bg-[#205b75]"
+                                    className="text-white mt-4 w-4/5 font-medium text-base rounded py-2 font-bold bg-[#205b75] md:hover:bg-[#bf8b56] md:hover:text-[#205b75]"
                                 >
                                     Sign in
                                 </button>

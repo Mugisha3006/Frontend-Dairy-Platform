@@ -99,7 +99,7 @@ function Signup() {
                         <div className="flex justify-center m-auto w-[80%]">
                             <button
                                 type="submit"
-                                className="text-white mt-4 font-medium text-base w-4/5 rounded py-2 font-bold bg-[#205b75]"
+                                className="text-white mt-4 font-medium text-base w-4/5 rounded py-2 font-bold bg-[#205b75] md:hover:bg-[#bf8b56] md:hover:text-[#205b75]"
                             >
                                 Sign up
                             </button>

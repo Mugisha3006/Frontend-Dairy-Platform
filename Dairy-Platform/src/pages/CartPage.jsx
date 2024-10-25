@@ -53,7 +53,7 @@ const CartPage = () => {
                     )
                 }
                 </ul>
-                <button onClick={checkout} className="bg-[#205b75] text-white px-4 py-2 rounded">
+                <button onClick={checkout} className="bg-[#205b75] text-white px-4 py-2 rounded md:hover:bg-[#bf8b56] md:hover:text-[#205b75]">
                     Checkout
                 </button>
             </div>

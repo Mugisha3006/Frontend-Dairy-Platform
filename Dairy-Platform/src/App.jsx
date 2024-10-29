@@ -8,6 +8,7 @@ import ProductListPage from "./pages/ProductListPage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import CartPage from "./pages/CartPage";
+import Order from "./pages/Order";
 
 function Layout({ children }) {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/products" element={<ProductListPage />} />
             <Route path="/cart" element={<CartPage />} />
+      <Route path="/order" element={<Order/> } />
           </Routes>
   );
 }

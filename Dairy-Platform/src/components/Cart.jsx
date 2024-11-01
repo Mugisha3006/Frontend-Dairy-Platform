@@ -64,8 +64,9 @@ const Cart = () => {
     const navigate = useNavigate();
     const checkout = () => {
         const requestBody = {
-            cart_items: cart
+            cart_items: cartItems.id //undefined
         };
+        console.log(requestBody)
         axios
             .post(
                 "http://localhost:3300/api/V1/orders/create",

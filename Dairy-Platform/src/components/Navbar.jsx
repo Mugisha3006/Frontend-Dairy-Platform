@@ -88,6 +88,11 @@ function Navbar() {
                                             Logout
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link to="/cart" className="text-[#205b75] text-2xl md:hover:text-[#bf8b56] md:hover:text-[#205b75]">
+                                            <i className='bx bxs-cart'></i>
+                                        </Link>
+                                    </li>
                                 </>
                             ) : (
                                 <>

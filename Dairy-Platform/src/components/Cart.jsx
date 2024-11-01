@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        // retrieve the cart data from localstorage
+        const savedCart = localStorage.getItem("cart");
+        console.log(savedCart)
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
+    }, []);
 
     // Fetch cart items from the API when the component mounts
     useEffect(() => {
@@ -50,19 +61,39 @@ const Cart = () => {
         }
     };
 
+    const navigate = useNavigate();
+    const checkout = () => {
+        const requestBody = {
+            cart_items: cart
+        };
+        axios
+            .post(
+                "http://localhost:3300/api/V1/orders/create",
+                requestBody
+            )
+            .then((response) => {
+                const order = response.data
+                localStorage.setItem("order", order)
+                navigate("/order")
+            })
+            .catch((error) => {
+                console.error(error)
+            });
+    };
+
     return (
-        <div className="border border-gray-200 p-4">
-            <h3 className="text-lg font-bold">Cart</h3>
-            <div className="flex flex-col gap-4">
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-2xl font-bold text-center">Cart</h1>
+            <div className="flex flex-col gap-4  px-4 py-8">
                 {cartItems.map((cartItem) => (
                     <div key={cartItem.id} className="flex justify-between">
-                        <p className="text-sm text-gray-500">{cartItem.product.name}</p>
+                        <p className="text-sm text-gray-500">{cartItem.product}</p>
                         <p className="text-sm text-gray-500">Quantity: {cartItem.quantity}</p>
                         <button onClick={() => removeFromCart(cartItem)} className="text-red-500 hover:text-red-700">Remove</button>
                     </div>
                 ))}
             </div>
-            <button onClick={() => checkout()} className="bg-green-500 text-white px-4 py-2 rounded">Checkout</button>
+            <button onClick={checkout} className="bg-green-500 text-white px-4 py-2 rounded">Checkout</button>
         </div>
     );
 };

@@ -10,7 +10,7 @@ function Navbar() {
 
     useEffect(() => {
         const user = userData();
-        if (user && user.username) {
+        if (user && user.email) {
             setIsLoggedIn(true);
             setEmail(user.email);
         }
@@ -79,11 +79,11 @@ function Navbar() {
                                         </span>
                                         <span className="nav-links">{email}</span>
                                     </li>
-                                    <li className="hover:text-[white] md:hover:text-[#bf8b56]">
+                                    <li className="hover:text-[white] md:hover:text-[#205b75]">
                                         <Link
                                             to="/"
                                             onClick={handleLogout}
-                                            className="text-[#f2f2f2] bg-[#061f77] py-[0.25em] px-[0.875em] hover:text-[#205b75] hover:bg-[#fefefe] md:hover:bg-[#e3bf00] md:hover:text-[#205b75] md:text-[#fefefe] rounded-2xl font-normal md:ml-4"
+                                            className="text-white bg-[#205b75] py-[0.25em] px-[0.875em] hover:text-white hover:bg-[#bf8b56] md:hover:bg-[#bf8b56] md:hover:text-[#205b75] md:text-white rounded-2xl font-normal md:ml-4"
                                         >
                                             Logout
                                         </Link>

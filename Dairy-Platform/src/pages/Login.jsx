@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const[error, setError] = useState("")
 
     const navigate = useNavigate();
 
@@ -26,8 +27,9 @@ function Login() {
                 requestBody
             )
             .then((response) => {
-                const token = response.data.token;
-                localStorage.setItem("token", token)
+                // const token = response.data.token;
+                // localStorage.setItem("token", token)
+                storeUser(response.data)
                 navigate("/products")
             })
             .catch((error) => {
@@ -67,7 +69,7 @@ function Login() {
                             </div>
                            
                             <div className="relative flex w-[80%] m-auto justify-center">
-                                <label htmlFor="Password" className="text-lg m-[0] font-normal" />
+                                <label htmlFor="password" className="text-lg m-[0] font-normal" />
                                 <input
                                     id="Password"
                                     type="Password"

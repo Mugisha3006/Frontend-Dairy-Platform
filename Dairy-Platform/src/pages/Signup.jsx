@@ -10,6 +10,7 @@ function Signup() {
     const [name, setNames] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
 
@@ -51,7 +52,7 @@ function Signup() {
                     </h2>
                     <form onSubmit={submitHandler} className="mt-4 ">
                         <div className="flex w-[80%] m-auto justify-center">
-                            <label for="Names" className="text-lg m-[0]" />
+                            <label htmlFor="name" className="text-lg m-[0]" />
                             <input
                                 id="Names"
                                 type="text"
@@ -65,7 +66,7 @@ function Signup() {
                         </div>
                         
                         <div className="flex w-[80%] m-auto justify-center">
-                            <label for="Email" className="text-lg m-[0]" />
+                            <label htmlFor="email" className="text-lg m-[0]" />
                             <input
                                 id="Email"
                                 type="Email"
@@ -79,7 +80,7 @@ function Signup() {
                         </div>
                        
                         <div className="relative flex w-[80%] m-auto justify-center">
-                            <label for="Password" className="text-lg m-[0] font-normal" />
+                            <label htmlFor="password" className="text-lg m-[0] font-normal" />
                             <input
                                 id="Password"
                                 type="Password"

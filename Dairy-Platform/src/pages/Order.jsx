@@ -67,7 +67,7 @@ const Order = () => {
                         <h2 className="text-xl font-semibold ">Payment Information</h2>
                         <div className="mt-4">
                             <label htmlFor="card_number" className="block mb-1">
-                                Card Number
+                                Dairy Product Name
                             </label>
                             <input
                                 type="text"
@@ -79,7 +79,7 @@ const Order = () => {
                         <div className="grid grid-cols-2 gap-4 mt-4">
                             <div>
                                 <label htmlFor="exp_date" className="blockmb-1">
-                                    Expiration Date
+                                    Total Quantity
                                 </label>
                                 <input
                                     type="text"
@@ -89,7 +89,7 @@ const Order = () => {
                             </div>
                             <div>
                                 <label htmlFor="cvv" className="block mb-1">
-                                    CVV
+                                    Total Price
                                 </label>
                                 <input
                                     type="text"
